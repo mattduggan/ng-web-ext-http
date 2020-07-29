@@ -1,0 +1,6 @@
+{
+  "name": "ng-web-ext-demo",
+  "version": "1.0.0",
+  "description": "Demonstration of ng-web-ext",
+  "manifest_version": 2
+}
