@@ -2,5 +2,18 @@
   "name": "ng-web-ext-demo",
   "version": "1.0.0",
   "description": "Demonstration of ng-web-ext",
-  "manifest_version": 2
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": [ "https://mail.google.com/*" ],
+      "js": [
+        "runtime.js",
+        "polyfills.js",
+        "styles.js",
+        "vendor.js",
+        "main.js"
+      ],
+      "all_frames": true
+    }
+  ]
 }
