@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/ng-web-ext-demo",
             "index": "projects/ng-web-ext-demo/src/index.html",
@@ -31,7 +31,10 @@
             "styles": [
               "projects/ng-web-ext-demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "projects/ng-web-ext-demo/webpack.config.js"
+            }
           },
           "configurations": {
             "production": {

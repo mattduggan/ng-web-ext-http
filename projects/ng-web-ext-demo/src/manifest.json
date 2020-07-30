@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Demonstration of ng-web-ext",
   "manifest_version": 2,
+  "background": {
+    "scripts": [
+      "runtime.js",
+      "background.js"
+    ]
+  },
   "content_scripts": [
     {
       "matches": [ "https://mail.google.com/*" ],
@@ -15,5 +21,13 @@
       ],
       "all_frames": true
     }
+  ],
+  "web_accessible_resources": [
+    "runtime.js.map",
+    "polyfills.js.map",
+    "styles.js.map",
+    "vendor.js.map",
+    "main.js.map",
+    "background.js.map"
   ]
 }

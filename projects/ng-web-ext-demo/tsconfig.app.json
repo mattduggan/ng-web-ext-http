@@ -9,6 +9,7 @@
   },
   "files": [
     "src/main.ts",
+    "src/background.ts",
     "src/polyfills.ts"
   ],
   "include": [
