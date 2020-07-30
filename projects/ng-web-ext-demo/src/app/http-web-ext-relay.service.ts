@@ -129,6 +129,7 @@ export class HttpWebExtRelay implements HttpBackend {
               // The full body has been received and delivered, no further events
               // are possible. This request is complete.
               observer.complete();
+              port.disconnect();
             }
             break;
         }

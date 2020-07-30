@@ -12,9 +12,9 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get('https://jsonplaceholder.typicode.com/todos/1')
-      .subscribe((todos) => {
-        console.log(todos);
+    this.http.get('https://jsonplaceholder.typicode.com/todos/1', { reportProgress: true, observe: 'events' })
+      .subscribe((event) => {
+        console.log(event);
       });
   }
 }
