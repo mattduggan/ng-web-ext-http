@@ -301,7 +301,4 @@ function createHttpWebExtBackend(xhrFactory: XhrFactory = new BrowserXhr()) {
   };
 }
 
-
-
-
 chrome.runtime.onConnect.addListener(createHttpWebExtBackend());
