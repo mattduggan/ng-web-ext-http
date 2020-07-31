@@ -25,7 +25,7 @@ function getResponseUrl(xhr: any): string | null {
   return null;
 }
 
-export function createHttpWebExtBackend() {
+export function createHttpWebExtBackendListener() {
   return (port: Port) => {
 
     if (port.name !== PORT_NAME) { return; }

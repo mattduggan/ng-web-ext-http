@@ -1,24 +1,79 @@
 # ng-web-ext-http
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+Angular HttpBackend for Extensions.
 
-## Code scaffolding
+## Summary
 
-Run `ng generate component component-name --project ng-web-ext-http` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-web-ext-http`.
-> Note: Don't forget to add `--project ng-web-ext-http` or else it will be added to the default project in your `angular.json` file. 
+[Chromium](https://www.chromium.org/Home/chromium-security/extension-content-script-fetches) has announced changes to its extensions, 
+disallowing cross-origin fetches from content scripts to improve security. As a result, requests should be relayed through the 
+extension background page.
 
-## Build
+This library contains a replacement for `HttpBackend`, `HttpWebExtBackend`, and a listener factory, `createHttpWebExtBackendListener`, allowing
+requests and responses to be relayed through the background page.
 
-Run `ng build ng-web-ext-http` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Publishing
+```
+npm i ng-web-ext-http
+```
 
-After building your library with `ng build ng-web-ext-http`, go to the dist folder `cd dist/ng-web-ext-http` and run `npm publish`.
+## Usage
 
-## Running unit tests
+Import `HttpWebExtModule` in a content script's `AppModule` _after_ `HttpClientModule`:
 
-Run `ng test ng-web-ext-http` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpWebExtModule } from 'ng-web-ext-http/content';
+import { AppComponent } from './app.component';
 
-## Further help
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    HttpWebExtModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+In the background script, create and register the listener:
+
+```
+import { createHttpWebExtBackendListener } from 'ng-web-ext-http/background';
+
+chrome.runtime.onConnect.addListener(createHttpWebExtBackendListener());
+```
+
+## Demo
+
+Clone the repository, build and link the library, and build the extension demo:
+
+```
+git clone git@github.com:mattduggan/ng-web-ext-http.git
+cd ng-web-ext-http
+
+npm install
+
+# build the library
+npm run build
+
+# symlink the library to the global folder
+cd dist/ng-web-ext-http
+npm link
+
+# create a symbolic link for the project root
+cd ../..
+npm link ng-web-ext-http
+
+# build the extension demo
+npm run build:demo
+```
+
+Load the unpacked extension from `dist/demo`. 
+Head to https://www.example.com and check the console output. 
