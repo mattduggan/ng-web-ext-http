@@ -1,11 +1,13 @@
 {
-  "name": "ng-web-ext-demo",
+  "name": "ng-web-ext-http-demo",
   "version": "1.0.0",
-  "description": "Demonstration of ng-web-ext",
+  "description": "Demonstration of ng-web-ext-http",
   "manifest_version": 2,
   "background": {
     "scripts": [
       "runtime.js",
+      "scripts.js",
+      "vendor.js",
       "background.js"
     ]
   },
@@ -15,19 +17,12 @@
       "js": [
         "runtime.js",
         "polyfills.js",
+        "scripts.js",
         "styles.js",
         "vendor.js",
         "main.js"
       ],
       "all_frames": true
     }
-  ],
-  "web_accessible_resources": [
-    "runtime.js.map",
-    "polyfills.js.map",
-    "styles.js.map",
-    "vendor.js.map",
-    "main.js.map",
-    "background.js.map"
   ]
 }

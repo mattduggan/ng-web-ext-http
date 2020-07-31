@@ -1,0 +1,15 @@
+{
+  "name": "ng-web-ext-http",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^10.0.5",
+    "@angular/core": "^10.0.5",
+    "webextension-polyfill": "^0.6.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^78.0.1"
+  }
+}

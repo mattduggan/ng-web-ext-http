@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'ng-web-ext-demo';
+  title = 'demo';
 
   constructor(private http: HttpClient) {}
 

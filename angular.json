@@ -3,45 +3,47 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-web-ext-demo": {
+    "demo": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/ng-web-ext-demo",
-      "sourceRoot": "projects/ng-web-ext-demo/src",
+      "root": "projects/demo",
+      "sourceRoot": "projects/demo/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/ng-web-ext-demo",
-            "index": "projects/ng-web-ext-demo/src/index.html",
-            "main": "projects/ng-web-ext-demo/src/main.ts",
-            "polyfills": "projects/ng-web-ext-demo/src/polyfills.ts",
-            "tsConfig": "projects/ng-web-ext-demo/tsconfig.app.json",
+            "outputPath": "dist/demo",
+            "index": "projects/demo/src/index.html",
+            "main": "projects/demo/src/main.ts",
+            "polyfills": "projects/demo/src/polyfills.ts",
+            "tsConfig": "projects/demo/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/ng-web-ext-demo/src/favicon.ico",
-              "projects/ng-web-ext-demo/src/assets",
-              "projects/ng-web-ext-demo/src/manifest.json"
+              "projects/demo/src/favicon.ico",
+              "projects/demo/src/assets",
+              "projects/demo/src/manifest.json"
             ],
             "styles": [
-              "projects/ng-web-ext-demo/src/styles.scss"
+              "projects/demo/src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/webextension-polyfill/dist/browser-polyfill.min.js"
+            ],
             "customWebpackConfig": {
-              "path": "projects/ng-web-ext-demo/webpack.config.js"
+              "path": "projects/demo/webpack.config.js"
             }
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/ng-web-ext-demo/src/environments/environment.ts",
-                  "with": "projects/ng-web-ext-demo/src/environments/environment.prod.ts"
+                  "replace": "projects/demo/src/environments/environment.ts",
+                  "with": "projects/demo/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -70,33 +72,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-web-ext-demo:build"
+            "browserTarget": "demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-web-ext-demo:build:production"
+              "browserTarget": "demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-web-ext-demo:build"
+            "browserTarget": "demo:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ng-web-ext-demo/src/test.ts",
-            "polyfills": "projects/ng-web-ext-demo/src/polyfills.ts",
-            "tsConfig": "projects/ng-web-ext-demo/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-web-ext-demo/karma.conf.js",
+            "main": "projects/demo/src/test.ts",
+            "polyfills": "projects/demo/src/polyfills.ts",
+            "tsConfig": "projects/demo/tsconfig.spec.json",
+            "karmaConfig": "projects/demo/karma.conf.js",
             "assets": [
-              "projects/ng-web-ext-demo/src/favicon.ico",
-              "projects/ng-web-ext-demo/src/assets"
+              "projects/demo/src/favicon.ico",
+              "projects/demo/src/assets"
             ],
             "styles": [
-              "projects/ng-web-ext-demo/src/styles.scss"
+              "projects/demo/src/styles.scss"
             ],
             "scripts": []
           }
@@ -105,9 +107,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ng-web-ext-demo/tsconfig.app.json",
-              "projects/ng-web-ext-demo/tsconfig.spec.json",
-              "projects/ng-web-ext-demo/e2e/tsconfig.json"
+              "projects/demo/tsconfig.app.json",
+              "projects/demo/tsconfig.spec.json",
+              "projects/demo/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -117,16 +119,56 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/ng-web-ext-demo/e2e/protractor.conf.js",
-            "devServerTarget": "ng-web-ext-demo:serve"
+            "protractorConfig": "projects/demo/e2e/protractor.conf.js",
+            "devServerTarget": "demo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ng-web-ext-demo:serve:production"
+              "devServerTarget": "demo:serve:production"
             }
           }
         }
       }
+    },
+    "ng-web-ext-http": {
+      "projectType": "library",
+      "root": "projects/ng-web-ext-http",
+      "sourceRoot": "projects/ng-web-ext-http/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-web-ext-http/tsconfig.lib.json",
+            "project": "projects/ng-web-ext-http/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-web-ext-http/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-web-ext-http/src/test.ts",
+            "tsConfig": "projects/ng-web-ext-http/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-web-ext-http/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-web-ext-http/tsconfig.lib.json",
+              "projects/ng-web-ext-http/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
-  "defaultProject": "ng-web-ext-demo"
+  "defaultProject": "ng-web-ext-http"
 }

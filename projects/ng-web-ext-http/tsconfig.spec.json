@@ -2,17 +2,16 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/app",
+    "outDir": "../../out-tsc/spec",
     "types": [
-      "chrome"
+      "jasmine"
     ]
   },
   "files": [
-    "src/main.ts",
-    "src/background.ts",
-    "src/polyfills.ts"
+    "src/test.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "**/*.spec.ts",
+    "**/*.d.ts"
   ]
 }
