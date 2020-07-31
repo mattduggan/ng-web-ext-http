@@ -1,3 +1,3 @@
 import { createHttpWebExtBackend } from 'ng-web-ext-http/background';
 
-browser.runtime.onConnect.addListener(createHttpWebExtBackend());
+chrome.runtime.onConnect.addListener(createHttpWebExtBackend());

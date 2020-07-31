@@ -6,8 +6,6 @@
   "background": {
     "scripts": [
       "runtime.js",
-      "scripts.js",
-      "vendor.js",
       "background.js"
     ]
   },
@@ -17,7 +15,6 @@
       "js": [
         "runtime.js",
         "polyfills.js",
-        "scripts.js",
         "styles.js",
         "vendor.js",
         "main.js"

@@ -1,7 +1,7 @@
-import { HttpBackend, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpWebExtBackend } from 'ng-web-ext-http';
+import { HttpWebExtModule } from 'ng-web-ext-http/content';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -10,11 +10,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
-  ],
-  providers: [
-    HttpWebExtBackend,
-    { provide: HttpBackend, useExisting: HttpWebExtBackend }
+    HttpClientModule,
+    HttpWebExtModule
   ],
   bootstrap: [AppComponent]
 })

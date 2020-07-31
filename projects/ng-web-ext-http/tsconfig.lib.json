@@ -7,7 +7,7 @@
     "declaration": true,
     "inlineSources": true,
     "types": [
-      "firefox-webext-browser"
+      "chrome"
     ],
     "lib": [
       "dom",
