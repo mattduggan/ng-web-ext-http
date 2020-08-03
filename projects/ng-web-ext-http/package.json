@@ -1,9 +1,21 @@
 {
   "name": "ng-web-ext-http",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Angular HttpBackend for Extensions",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattduggan/ng-web-ext-http.git"
+  },
+  "author": "Matt Duggan <mjduggan24@gmail.com> (https://github.com/mattduggan)",
+  "license": "MIT",
+  "homepage": "https://github.com/mattduggan/ng-web-ext-http",
+  "bugs": {
+    "url": "https://github.com/mattduggan/ng-web-ext-http/issues"
+  },
   "peerDependencies": {
     "@angular/common": "^10.0.5",
-    "@angular/core": "^10.0.5"
+    "@angular/core": "^10.0.5",
+    "rxjs": "~6.5.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"
